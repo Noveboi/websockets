@@ -9,23 +9,23 @@ public sealed class WebSocketGroupManager(ILogger<WebSocketGroupManager> logger)
 {
     private readonly ConcurrentDictionary<string, HashSet<SocketClient>> _groups = [];
 
-    public async Task AddToGroupAsync(string groupName, SocketClient socket, CancellationToken ct)
+    public async Task AddToGroupAsync(string groupName, SocketClient client, CancellationToken ct)
     {
         var group = _groups.GetOrAdd(groupName, _ => []);
 
-        if (group.Add(socket))
-            await MessageGroupAsync(groupName, "User has entered the chat!", ct);
+        if (group.Add(client))
+            await MessageGroupAsync(groupName, $"{client.User.Username} has entered the chat!", ct);
         
         logger.LogInformation("Group ADD ({count})", group.Count);
     }
 
-    public async Task RemoveFromGroup(string groupName, SocketClient socket, CancellationToken ct)
+    public async Task RemoveFromGroup(string groupName, SocketClient client, CancellationToken ct)
     {
         if (!_groups.TryGetValue(groupName, out var group))
             return;
         
-        if (group.Remove(socket))
-            await MessageGroupAsync(groupName, "User has left the chat!", ct);
+        if (group.Remove(client))
+            await MessageGroupAsync(groupName, $"{client.User.Username} has left the chat!", ct);
         
         logger.LogInformation("Group REMOVE ({count})", group.Count);
     }
