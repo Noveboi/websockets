@@ -1,0 +1,11 @@
+C:\Users\cptgi\RiderProjects\WebApplication1\WebSocketExample.Domain\bin\Debug\net9.0\WebSocketExample.Domain.deps.json
+C:\Users\cptgi\RiderProjects\WebApplication1\WebSocketExample.Domain\bin\Debug\net9.0\WebSocketExample.Domain.dll
+C:\Users\cptgi\RiderProjects\WebApplication1\WebSocketExample.Domain\bin\Debug\net9.0\WebSocketExample.Domain.pdb
+C:\Users\cptgi\RiderProjects\WebApplication1\WebSocketExample.Domain\obj\Debug\net9.0\WebSocketExample.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cptgi\RiderProjects\WebApplication1\WebSocketExample.Domain\obj\Debug\net9.0\WebSocketExample.Domain.AssemblyInfoInputs.cache
+C:\Users\cptgi\RiderProjects\WebApplication1\WebSocketExample.Domain\obj\Debug\net9.0\WebSocketExample.Domain.AssemblyInfo.cs
+C:\Users\cptgi\RiderProjects\WebApplication1\WebSocketExample.Domain\obj\Debug\net9.0\WebSocketExample.Domain.csproj.CoreCompileInputs.cache
+C:\Users\cptgi\RiderProjects\WebApplication1\WebSocketExample.Domain\obj\Debug\net9.0\WebSocketExample.Domain.dll
+C:\Users\cptgi\RiderProjects\WebApplication1\WebSocketExample.Domain\obj\Debug\net9.0\refint\WebSocketExample.Domain.dll
+C:\Users\cptgi\RiderProjects\WebApplication1\WebSocketExample.Domain\obj\Debug\net9.0\WebSocketExample.Domain.pdb
+C:\Users\cptgi\RiderProjects\WebApplication1\WebSocketExample.Domain\obj\Debug\net9.0\ref\WebSocketExample.Domain.dll
