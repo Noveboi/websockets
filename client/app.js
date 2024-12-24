@@ -5,8 +5,12 @@ const socket = new MyWebSocket(serverPort, appendMessage)
 
 const messageList = getRequiredElementById('message-list')
 const chatForm = getRequiredElementById('chat-form')
+const chatArea = getRequiredElementById('chat-area')
 const connectForm = getRequiredElementById('connect-form')
 const connectArea = getRequiredElementById('connect-area')
+
+const chatAreaChildren = [...chatArea.childNodes];
+chatArea.replaceChildren()
 
 connectForm.addEventListener('submit', e => {
     e.preventDefault()
@@ -14,9 +18,11 @@ connectForm.addEventListener('submit', e => {
     const formData = new FormData(connectForm)
     const username = formData.get('username')
 
-    socket.connect(username)
-    connectForm.remove()
-    connectArea.appendChild(loggedInMessage(username))
+    if (socket.connect(username)) {
+        chatAreaChildren.forEach(c => chatArea.appendChild(c))
+        connectForm.remove()
+        connectArea.appendChild(loggedInMessage(username))
+    }
 })
 
 chatForm.addEventListener('submit', e => {

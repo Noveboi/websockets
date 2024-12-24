@@ -5,6 +5,11 @@ export default class MyWebSocket {
 
         this.serverPort = serverPort;
         this.socket = new WebSocket(`ws://localhost:${serverPort}/ws`)
+        this.connectionOpened = false;
+
+        this.socket.addEventListener('open', e => {
+            this.connectionOpened = true
+        })
         
         this.socket.addEventListener('message', e => {
             receive(e.data)
@@ -16,15 +21,23 @@ export default class MyWebSocket {
     }
 
     send(message) {
+        if (this.connectionOpened === false)
+            return false
+        
         this.socket.send(message)
+        return true
     }
 
     connect(username) {
+       if (this.connectionOpened === false)
+        return false; 
+
         const initialPayload = JSON.stringify({
             username: username
         })
 
-        console.log(initialPayload)
         this.socket.send(initialPayload)
+
+        return true;
     }
 }
