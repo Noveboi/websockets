@@ -1,12 +1,12 @@
 import MyWebSocket from "./socket.js";
 
 const serverPort = 5191
+const socket = new MyWebSocket(serverPort, appendMessage)
 
 const messageList = getRequiredElementById('message-list')
 const chatForm = getRequiredElementById('chat-form')
 const connectForm = getRequiredElementById('connect-form')
-
-const socket = new MyWebSocket(serverPort, appendMessage)
+const connectArea = getRequiredElementById('connect-area')
 
 connectForm.addEventListener('submit', e => {
     e.preventDefault()
@@ -15,6 +15,8 @@ connectForm.addEventListener('submit', e => {
     const username = formData.get('username')
 
     socket.connect(username)
+    connectForm.remove()
+    connectArea.appendChild(loggedInMessage(username))
 })
 
 chatForm.addEventListener('submit', e => {
@@ -25,6 +27,14 @@ chatForm.addEventListener('submit', e => {
 
     socket.send(message)
 })
+
+function loggedInMessage(username) {
+    const h2 = document.createElement('h2')
+    const content = document.createTextNode(`Connected as '${username}'`)
+
+    h2.appendChild(content)
+    return h2
+}
 
 function appendMessage(message) {
     const newItem = document.createElement('li')
