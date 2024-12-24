@@ -25,12 +25,14 @@ app.Map("/ws", async (
 
         var buffer = new byte[1024 * 4];
         
-        // The first message by a client is ignored.
-        _ = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), ct);
-        
-        // The second message by a client is assumed to be a 'handshake' where
+        // The first message by a client is assumed to be a 'handshake' where
         // the client sends a User JSON object containing their information (such as Username)
         var initialPayload = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), ct);
+        if (initialPayload.MessageType is WebSocketMessageType.Close)
+        {
+            await webSocket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing pre-maturely", ct);
+            return;
+        }
         if (initialPayload.MessageType is not WebSocketMessageType.Text)
         {
             context.Response.StatusCode = 400;
